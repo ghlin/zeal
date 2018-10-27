@@ -195,6 +195,59 @@ MainWindow::MainWindow(Core::Application *app, QWidget *parent) :
         currentTab()->activateSearchBar();
     });
 
+    // VIM-like keybindings
+    shortcut = new QShortcut(QStringLiteral("Shift+H"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->back();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("Shift+L"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->forward();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("Ctrl+U"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->scrollUpHalfPage();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("Ctrl+D"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->scrollDownHalfPage();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("j"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->scrollUp();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("k"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->scrollDown();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("g"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->scrollToTop();
+    });
+
+    shortcut = new QShortcut(QStringLiteral("Ctrl+N"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        const auto index = ui->treeView->currentIndex();
+        const auto next = ui->treeView->indexBelow(index);
+
+        ui->treeView->setCurrentIndex(next);
+    });
+
+    shortcut = new QShortcut(QStringLiteral("Ctrl+P"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        const auto index = ui->treeView->currentIndex();
+        const auto next = ui->treeView->indexAbove(index);
+
+        ui->treeView->setCurrentIndex(next);
+    });
+
+
     if (QKeySequence(QKeySequence::Preferences).isEmpty()) {
         ui->actionPreferences->setShortcut(QStringLiteral("Ctrl+,"));
     } else {

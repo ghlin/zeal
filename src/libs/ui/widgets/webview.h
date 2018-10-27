@@ -47,6 +47,11 @@ public slots:
     void zoomIn();
     void zoomOut();
     void resetZoom();
+    void scrollUp();
+    void scrollDown();
+    void scrollUpHalfPage();
+    void scrollDownHalfPage();
+    void scrollToTop();
 
 signals:
     void zoomLevelChanged();

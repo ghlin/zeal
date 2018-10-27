@@ -85,6 +85,32 @@ void WebViewTab::resetZoom()
     m_webView->resetZoom();
 }
 
+void WebViewTab::scrollUp()
+{
+  m_webView->scrollUp();
+}
+
+void WebViewTab::scrollDown()
+{
+  m_webView->scrollDown();
+}
+
+void WebViewTab::scrollUpHalfPage()
+{
+  m_webView->scrollUpHalfPage();
+}
+
+void WebViewTab::scrollDownHalfPage()
+{
+  m_webView->scrollDownHalfPage();
+}
+
+
+void WebViewTab::scrollToTop()
+{
+  m_webView->scrollToTop();
+}
+
 void WebViewTab::setJavaScriptEnabled(bool enabled)
 {
     m_webView->page()->settings()->setAttribute(QWebSettings::JavascriptEnabled, enabled);

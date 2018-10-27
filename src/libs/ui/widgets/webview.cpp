@@ -93,6 +93,39 @@ void WebView::resetZoom()
     setZoomLevel(defaultZoomLevel());
 }
 
+void WebView::scrollToTop()
+{
+  page()->mainFrame()->setScrollPosition(QPoint(0, 0));
+}
+
+void WebView::scrollUp()
+{
+  page()->mainFrame()->setScrollPosition(
+    page()->mainFrame()->scrollPosition() + QPoint(0, 50));
+}
+
+void WebView::scrollDown()
+{
+  page()->mainFrame()->setScrollPosition(
+    page()->mainFrame()->scrollPosition() + QPoint(0, -50));
+}
+
+void WebView::scrollUpHalfPage()
+{
+  const auto height = size().height();
+  const auto offset = page()->mainFrame()->scrollPosition() - QPoint(0, height / 2);
+
+  page()->mainFrame()->setScrollPosition(offset);
+}
+
+void WebView::scrollDownHalfPage()
+{
+  const auto height = size().height();
+  const auto offset = page()->mainFrame()->scrollPosition() + QPoint(0, height / 2);
+
+  page()->mainFrame()->setScrollPosition(offset);
+}
+
 QWebView *WebView::createWindow(QWebPage::WebWindowType type)
 {
     Q_UNUSED(type)

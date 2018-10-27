@@ -69,6 +69,12 @@ public slots:
     void zoomOut();
     void resetZoom();
 
+    void scrollUp();
+    void scrollDown();
+    void scrollUpHalfPage();
+    void scrollDownHalfPage();
+    void scrollToTop();
+
 protected:
     void keyPressEvent(QKeyEvent *event) override;
 
