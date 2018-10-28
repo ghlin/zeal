@@ -196,6 +196,11 @@ MainWindow::MainWindow(Core::Application *app, QWidget *parent) :
     });
 
     // VIM-like keybindings
+    shortcut = new QShortcut(QStringLiteral("Escape"), this);
+    connect(shortcut, &QShortcut::activated, this, [this]() {
+        currentTab()->setFocus();
+    });
+
     shortcut = new QShortcut(QStringLiteral("Shift+H"), this);
     connect(shortcut, &QShortcut::activated, this, [this]() {
         currentTab()->back();
